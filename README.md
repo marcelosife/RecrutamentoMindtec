@@ -5,7 +5,13 @@ Projeto para utilização no recrutamento e seleção.
 
 * Faça commits por cada tarefa realizada e, ao final, envie o link do seu repositório para vaga.mindtec@gmail.com.br;
 * Utilize o banco de dados conforme instruções;
+
+#### Tabelas
+
 * Crie as tabelas de acordo com o diagrama relacional ![ ](https://github.com/mindtec2014/RecrutamentoMindtec/blob/master/instrucoes/banco-de-dados.png);
+* Clientes: IdCliente - Chave Primária, RazaoSocial - Texto, DataCadastro - Data, BolAtivo - 1 ou 0;
+* ContatosClientes: IdContato - Chave Primária, IdCliente - Chave Estrangeira, TipoContato - Texto (Exemplo: Email, Telefone, Celular), DescContato - Texto (Exemplo: tiago@gmail.com, (27)9999-8888, etc), BolAtivo - 1 ou 0;
+
 
 #### As seguintes funcionalidades deverão ser criadas:
 
