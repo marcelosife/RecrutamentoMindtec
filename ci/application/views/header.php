@@ -13,12 +13,12 @@
       <nav class="navbar navbar-default">
         <div class="container">
           <div class="navbar-header">
-            <a class="navbar-brand"  href="#">Teste MindTec</a>
+            <a class="navbar-brand"  href="<?php echo base_url(''); ?>">Teste MindTec</a>
           </div>
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li><a href="<?php echo base_url('clientes');?>">Cliente</a></li>
-                <li><a href="<?php echo base_url('contatos');?>">Contato</a></li>
+                <li><a href="<?php echo base_url('clientes');?>">Clientes</a></li>
+                <li><a href="<?php echo base_url('contatos');?>">Contatos</a></li>
             </ul>
         </div>
       </nav>       

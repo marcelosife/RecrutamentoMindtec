@@ -4,13 +4,15 @@ $this->load->view('header');
 <div id="container" >
 	<div class="contant" align="center">
 		<div class="row">
-		<div class="col-md-12">
-			<div class="row">
-				<div class="col-md-7 buttons-head">
-					<button type="button" class="btn btn-primary btn-md" ><a href="<?php echo base_url('cliente');?>"><i class="icon-download-alt"></i>&nbsp;Novo Cliente</a></button>
-				</div>			
-			</div>
+            <div class="col-md-12">
+                <h3>Lista de Clientes</h3>
+				<hr>
+            </div>
 		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<button type="button" class="btn btn-primary btn-md" ><a href="<?php echo base_url('cliente');?>"><i class="icon-download-alt"></i>&nbsp;Novo Cliente</a></button>
+			</div>
 		</div>
 		<div class="row">
 			<div class="col-md-12">
@@ -26,8 +28,7 @@ $this->load->view('header');
 					</tr>
 				</thead>
 				<tfoot>
-					<tr>
-					
+					<tr>					
 					<td colspan="5">
 						<nav aria-label="Page navigation">
 						<ul class="pagination pull-right">
@@ -44,8 +45,7 @@ $this->load->view('header');
 						</nav>
 					</td>
 					</tr>
-				</tfoot>
-				
+				</tfoot>				
 				<tbody>
 					<?php foreach( $clients as $client){?>
 						<tr>				
@@ -56,6 +56,7 @@ $this->load->view('header');
 							<td class="buttons">						
 								<button type='button' class='btn btn-success btn-sm' ><i class='icon-edit'></i><?php echo anchor('cliente/'.$client->IdClinte, 'Editar'	); ?></button>
 								<button type='button' class='btn btn-danger btn-sm' ><i class='icon-trash'></i><?php echo anchor('cliente/excluir/'.$client->IdClinte, 'Excluir'	); ?></button>
+								<button type='button' class='btn btn-primary btn-sm' ><i class='glyphicon glyphicon-envelope'></i><?php echo anchor('contatos/cliente/'.$client->IdClinte, 'Contatos'	); ?></button>
 							</td>
 						</tr>
 					<?php } ?>
