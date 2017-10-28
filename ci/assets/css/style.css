@@ -18,7 +18,7 @@ body{
 .contant{
 	border: 1px solid #c2c2c2;
   border-radius:4px;
-  background-color: #fff;
+  background-color: #fcfcfc;
   font-family: arial;
   font-size: 13pt;
   margin: 10px ;
@@ -46,6 +46,12 @@ body{
 
 .btn a{
 	color:#fff;
+  text-decoration: none;
+}
+
+.btn a:hover{
+	color:#cecece;
+  text-decoration: none;
 }
 
 .label{
@@ -59,3 +65,4 @@ body{
 	width: 100%;
 	
 }
+

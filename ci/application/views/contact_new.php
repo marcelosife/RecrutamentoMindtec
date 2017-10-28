@@ -5,7 +5,7 @@ $this->load->view('header');
 	<div class="contant" align="center">
 		<div class="row">
 		<div class="col-md-6 col-md-offset-3">
-            <div class="panel panel-default"> 
+            <div class="panel panel-success"> 
             <div class="panel-heading">
                 <h3 class="panel-title">Cadastro de Contatos</h3>
             </div>

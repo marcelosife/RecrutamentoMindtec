@@ -34,6 +34,7 @@ class Contact extends CI_Controller {
 	{
         $contactid = $this->uri->segment(2);
         $dados['contact'] = $this->contact->get($contactid);
+        $clientid = $dados['contact']->IdCliente;
         $this->form_validation->set_rules('TipoContato', 'Tipo', 'trim|required|max_length[50]', 
         array(  'required'=> 'Campo {field} requerido'    ));
         $this->form_validation->set_rules('DescContato', 'Descrição', 'trim|required|max_length[255]', 
@@ -42,9 +43,10 @@ class Contact extends CI_Controller {
             $data_form = $this->input->post();            
             $update_contact['IdContato'] = $contactid;
             $update_contact['TipoContato'] = $data_form['TipoContato'];
+            $update_contact['DescContato'] = $data_form['DescContato'];
             $update_contact['BolAtivo'] = $data_form['BolAtivo'];
             if($contacid = $this->contact->save($update_contact)){
-                redirect(  'contatos', 'refresh' );
+                redirect(  'contatos/cliente/'.$clientid, 'refresh' );
             }
         }
         $this->load->view('contact_detail', $dados);
@@ -62,7 +64,7 @@ class Contact extends CI_Controller {
 	}
 
     public function insert(){
-        $clientid = $this->uri->segment(2);
+        $clientid = $this->uri->segment(3);
         $dados['client'] = $this->client->get($clientid);
         $this->form_validation->set_rules('TipoContato', 'Tipo Contato', 'trim|required|max_length[50]', 
         array(  'required'=> 'Campo {field} requerido'    ));
@@ -70,7 +72,7 @@ class Contact extends CI_Controller {
         array(  'required'=> 'Campo {field} requerido'    ));
         if($this->form_validation->run() == TRUE){       
             $data_form = $this->input->post();
-            $newcontact['IdClinte'] = $clientid;
+            $newcontact['IdCliente'] = $clientid;
             $newcontact['TipoContato'] = $data_form['TipoContato'];
             $newcontact['DescContato'] = $data_form['TipoContato'];
             if($contactid = $this->contact->save($newcontact)){

@@ -42,7 +42,7 @@ class Contact_model extends CI_Model {
 	}
 
     public function getAllClient($clientid){      
-        $this->db->where('IdClinte', $clientid);  
+        $this->db->where('IdCliente', $clientid);  
         $this->db->order_by('IdContato', 'desc');
         $query = $this->db->get('ContatosClientes');
         if($query->num_rows() > 0 ){
@@ -53,26 +53,9 @@ class Contact_model extends CI_Model {
         }
     }
 
-    public function getAll($limit=0, $offset=0){
-        if($limit == 0 ){
-            $this->db->order_by('IdContato', 'desc');
-            $query = $this->db->get('ContatosClientes');
-            if($query->num_rows() > 0 ){
-                return $query->result();
-            }
-            else {
-                return NULL;
-            }        
-        }
-        else{
-            $this->db->order_by('IdContato', 'desc');
-            $query = $this->db->get('ContatosClientes', $limit);
-            if($query->num_rows() > 0 ){
-                return $query->result();
-            }
-            else {
-                return NULL;
-            }     
-        }
+    public function getAll(){
+        return $this->db->select("ContatosClientes.*, Clientes.RazaoSocial")
+               ->join("Clientes", "Clientes.IdCliente=ContatosClientes.IdCliente")
+               ->get("ContatosClientes")->result();
     }
 }

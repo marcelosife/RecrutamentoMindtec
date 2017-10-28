@@ -7,7 +7,7 @@ $route['translate_uri_dashes']    = FALSE;
 
 $route['clientes']                = 'client/getAll';
 $route['cliente/(:num)']          = 'client/detail/$clientid';
-$route['cliente/excluir/(:num)']  = 'client/delete/$clientid';
+$route['cliente/excluir/']        = 'client/delete';
 $route['cliente']                 = 'client/insert';
 
 $route['contatos']                = 'contact/getAll';

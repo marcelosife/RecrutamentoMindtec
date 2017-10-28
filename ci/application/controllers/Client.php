@@ -8,6 +8,7 @@ class Client extends CI_Controller {
         $this->load->helper('form');
         $this->load->library('form_validation');
         $this->load->model('Client_model', 'client');
+        $this->load->model('Contact_model', 'contact');
     }
 
 	public function index()
@@ -29,7 +30,7 @@ class Client extends CI_Controller {
         array(  'required'=> 'Campo {field} requerido'    ));
         if($this->form_validation->run() == TRUE){
             $data_form = $this->input->post();            
-            $update_client['IdClinte'] = $clientid;
+            $update_client['IdCliente'] = $clientid;
             $update_client['RazaoSocial'] = $data_form['RazaoSocial'];
             $update_client['BolAtivo'] = $data_form['BolAtivo'];
             if($clientid = $this->client->save($update_client)){
@@ -41,13 +42,19 @@ class Client extends CI_Controller {
 
     public function delete()
 	{
-        $clientid = $this->uri->segment(3);
+        $clientid = $this->input->post('clientid');
         if(isset($clientid) && $clientid > 0){
             if($this->client->get($clientid)){
-                $this->client->delete($clientid);
+                if($this->contact->getAllClient($clientid)){
+                    $data = array('delete' => FALSE );   
+                }
+                else{
+                   $this->client->delete($clientid);
+                   $data = array('delete' => TRUE );
+                }     
+                echo json_encode($data);               
             }
         }
-        redirect(  'clientes', 'refresh' );
 	}
 
     public function insert(){
@@ -56,6 +63,7 @@ class Client extends CI_Controller {
         if($this->form_validation->run() == TRUE){       
             $data_form = $this->input->post();
             $newclient['RazaoSocial'] = $data_form['RazaoSocial'];
+            date_default_timezone_set('America/Sao_Paulo');
             $newclient['DataCadastro'] = date("Y-m-d H:i:s");
             if($clientid = $this->client->save($newclient)){
                 redirect(  'clientes', 'refresh' );

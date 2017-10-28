@@ -11,7 +11,7 @@ $this->load->view('header');
 		</div>
 		<div class="row">
 			<div class="col-md-12">
-				<button type="button" class="btn btn-primary btn-md" ><a href="<?php echo base_url('cliente');?>"><i class="icon-download-alt"></i>&nbsp;Novo Cliente</a></button>
+				<div  class="btn btn-primary btn-md" ><a href="<?php echo base_url('cliente');?>"><i class="icon-download-alt"></i>&nbsp;Novo Cliente</a></div>
 			</div>
 		</div>
 		<div class="row">
@@ -20,43 +20,24 @@ $this->load->view('header');
 				<table class="table table-striped table-condensed table-hover">
 				<thead>
 					<tr>					
-					<th class="id" custom-sort="" order="'id'" sort="sort">Id </th>
-					<th class="RazaoSocial" custom-sort="" order="'firstName'" sort="sort">Razão Social </th>
-					<th class="DataCadastro" custom-sort="" order="'lastName'" sort="sort">Data Cadastro</th>
-					<th class="BolAtivo" custom-sort="" order="'country'" sort="sort">Ativo</th>
+					<th class="id" >Id </th>
+					<th class="RazaoSocial" >Razão Social </th>
+					<th class="DataCadastro" >Data Cadastro</th>
+					<th class="BolAtivo" >Ativo</th>
 					<th ></th>
 					</tr>
-				</thead>
-				<tfoot>
-					<tr>					
-					<td colspan="5">
-						<nav aria-label="Page navigation">
-						<ul class="pagination pull-right">
-							<li class="page-item" >
-							<a href="" class="page-link" ng-click="prevPage()">« Prev</a>
-							</li>
-							<li class="page-item" ng-repeat="n in range(pagedItems.length, currentPage, currentPage + gap) " ng-class="{active: n == currentPage}" ng-click="setPage()">
-							<a href="" class="page-link" ng-bind="n + 1">1</a>
-							</li>
-							<li class="page-item" ng-class="{disabled: (currentPage) == pagedItems.length - 1}">
-							<a href="" class="page-link" ng-click="nextPage()">Next »</a>
-							</li>
-						</ul>
-						</nav>
-					</td>
-					</tr>
-				</tfoot>				
+				</thead>							
 				<tbody>
 					<?php foreach( $clients as $client){?>
 						<tr>				
-							<td> <?php echo $client->IdClinte; ?> </td>
+							<td> <?php echo $client->IdCliente; ?> </td>
 							<td> <?php echo $client->RazaoSocial; ?> </td>
 							<td> <?php echo date_format(date_create($client->DataCadastro),"d/m/Y H:i:s"); ?> </td>
 							<td> <?php echo( $client->BolAtivo ?  "Sim":  "Não"); ?> </td>						
 							<td class="buttons">						
-								<button type='button' class='btn btn-success btn-sm' ><i class='icon-edit'></i><?php echo anchor('cliente/'.$client->IdClinte, 'Editar'	); ?></button>
-								<button type='button' class='btn btn-danger btn-sm' ><i class='icon-trash'></i><?php echo anchor('cliente/excluir/'.$client->IdClinte, 'Excluir'	); ?></button>
-								<button type='button' class='btn btn-primary btn-sm' ><i class='glyphicon glyphicon-envelope'></i><?php echo anchor('contatos/cliente/'.$client->IdClinte, 'Contatos'	); ?></button>
+								<div  class='btn btn-success btn-sm' ><i class='icon-edit'></i><?php echo anchor('cliente/'.$client->IdCliente, 'Editar'	); ?></div>
+								<button onclick="deleteClient(<?php echo $client->IdCliente; ?>)" class='btn btn-danger btn-sm' ><i class='icon-trash'></i>Excluir</button>
+								<div  class='btn btn-primary btn-sm' ><i class='glyphicon glyphicon-envelope'></i><?php echo anchor('contatos/cliente/'.$client->IdCliente, 'Contatos'	); ?></div>
 							</td>
 						</tr>
 					<?php } ?>
